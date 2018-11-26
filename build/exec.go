@@ -19,6 +19,7 @@ func printCommand(cmd string, args ...string) {
 func execIn(wd string, out io.Writer, cmd string, args ...string) error {
 	printCommand(cmd, args...)
 	c := exec.Command(cmd, args...)
+	c.Env = os.Environ()
 	c.Dir = wd
 	c.Stderr = os.Stderr
 	c.Stdout = out
